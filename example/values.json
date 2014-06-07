@@ -1,0 +1,12 @@
+{
+	"testvalue": "originalTestValue",
+	"array": [
+		"arrayValue0",
+		"arrayValue1",
+		"arrayValue2"
+	],
+	"object": {
+		"val1": "anotherObjectValue",
+		"val2": "originalObjectValue"
+	}
+}
