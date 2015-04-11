@@ -33,6 +33,16 @@ var db = function(filename, callback) {
 			});
 		};
 
+		// Make _filename and save non-enumerable so that they dont mess up data.length 
+		Object.defineProperties(data, {
+			'_filename': {
+				enumerable: false
+			},
+			'save': {
+				enumerable: false
+			}
+		});
+
 		callback(null, data);
 	});
 };
