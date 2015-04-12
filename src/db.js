@@ -14,14 +14,10 @@ exports.db = function(filename, callback) {
 
 		// Adds the save function
 		data.save = function(callback) {
-			var filename = data._filename,
-				dataCopy = JSON.parse(JSON.stringify(data)); // We have to do it this way in order to clone the object instead of reference it.
-
-			// Get string
-			dataCopy = JSON.stringify(dataCopy);
+			var filename = data._filename;
 
 			// Write to the file
-			fs.writeFile(filename, dataCopy, function(err) {
+			fs.writeFile(data._filename, JSON.stringify(data), function(err) {
 				callback(err);
 			});
 		};
