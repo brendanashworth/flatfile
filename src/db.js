@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 // This is the flatfile.db() function. It instantiates a local database asynchronously.
-var db = function(filename, callback) {
+exports.db = function(filename, callback) {
 	fs.readFile(filename, {encoding: 'utf8'}, function(err, data) {
 		if (err)
 			return callback(err, null);
@@ -42,8 +42,4 @@ var db = function(filename, callback) {
 
 		callback(null, data);
 	});
-};
-
-module.exports = {
-	db: db
 };
