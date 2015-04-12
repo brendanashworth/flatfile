@@ -17,10 +17,6 @@ exports.db = function(filename, callback) {
 			var filename = data._filename,
 				dataCopy = JSON.parse(JSON.stringify(data)); // We have to do it this way in order to clone the object instead of reference it.
 
-			// Remove the library-specific data handles
-			delete dataCopy._filename;
-			delete dataCopy.save;
-
 			// Get string
 			dataCopy = JSON.stringify(dataCopy);
 
