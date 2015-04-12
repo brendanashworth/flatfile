@@ -2,12 +2,9 @@ var fs = require('fs');
 
 // This is the flatfile.db() function. It instantiates a local database asynchronously.
 var db = function(filename, callback) {
-
 	fs.readFile(filename, {encoding: 'utf8'}, function(err, data) {
-		if (err) {
-			// If an error occurred, stop execution and return the error for handling.
-			callback(err, null);
-		}
+		if (err)
+			return callback(err, null);
 
 		// Parse data
 		data = JSON.parse(data);
