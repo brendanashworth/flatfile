@@ -4,7 +4,7 @@
   "description": "Basic JSON-style local flatfile storage. Focus on simplicity and ease of use.",
   "main": "main.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/brendanashworth/flatfile/issues"
   },
-  "homepage": "https://github.com/brendanashworth/flatfile"
+  "homepage": "https://github.com/brendanashworth/flatfile",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4"
+  }
 }
