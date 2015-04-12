@@ -1,4 +1,4 @@
-FlatFile
+FlatFile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?branch=master)](https://travis-ci.org/brendanashworth/flatfile)
 =====
 
 ![FlatFile NPM](https://nodei.co/npm/flatfile.png)
