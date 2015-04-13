@@ -1,35 +1,33 @@
-FlatFile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?branch=master)](https://travis-ci.org/brendanashworth/flatfile)
+flatfile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?branch=master)](https://travis-ci.org/brendanashworth/flatfile)
 =====
 
-![FlatFile NPM](https://nodei.co/npm/flatfile.png)
-
-> FlatFile is a very simple library for storing, retrieving, and setting JSON data in a flatfile. The library focuses on ease of use and simplicity. Getting up and running is extremely simple and does not require installing any database software.
+> flatfile is a very simple library for storing, retrieving, and setting JSON data in a flatfile. The library focuses on ease of use and simplicity. Getting up and running is extremely simple and does not require installing any database software.
 
 ## Install
 ```bash
-$ npm install flatfile
+$ npm i flatfile --save
 ```
 
 ## Usage
+This example uses ES6 (see [io.js](https://iojs.org/en/index.html)), though the module is compatible up to node v0.10.
 ```javascript
-var flatfile = require('flatfile');
+const flatfile = require('flatfile');
 
 // Load a flatfile database based on file: myfile.json
-flatfile.db('myfile.json', function(err, data) {
-	if (err)
-		console.log('Error occurred: ' + err);
+flatfile.db('data.json', function(err, data) {
+    if (err) throw err;
 
-	// Load a value. This acts EXACTLY as a Javascript object!
-	console.log(data.firstValue);
+    // Manipulate data like a JS Object
+    data.numbers.filter(function(x) {
+        return x % 3 == 1;
+    }).map(Math.pow).forEach(function(x) {
+       data.output[x] = (Math.sin(x) > 0.5); 
+    });
 
-	// Set a value. Again, exactly as a JS object.
-	data.secondValue = "myVarValue";
-
-	// Save to the file.
-	data.save(function(err) {
-		if (err)
-			console.log('Error occurred while saving: ' + err);
-	});
+    // Save to the file.
+    data.save(function(err) {
+        if (err) throw err;
+    });
 });
 ```
 
