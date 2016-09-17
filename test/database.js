@@ -21,6 +21,7 @@ describe('flatfile database', function() {
 			// load
 			main.db('./example/values.json', function(err, data) {
 				assert.isNull(err, 'should not have error');
+				assert.isObject(data);
 
 				done();
 			});
