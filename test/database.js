@@ -4,13 +4,11 @@ var fs = require('fs');
 
 describe('flatfile database', function() {
 	describe('open database', function() {
-		// does it give error
-		it('should error on nonexistent file', function(done) {
+		it('should instantiate db on non-existent file', function(done) {
 			// load
 			main.db('./example/nope.json', function(err, data) {
-				assert.isObject(err, 'error should be an object');
-
-				assert.isNull(data, 'should not give data');
+				assert.isNull(err, 'error should be null');
+				assert.deepEqual(data, {}, 'data should be empty object');
 
 				done();
 			});
@@ -41,6 +39,43 @@ describe('flatfile database', function() {
 	});
 
 	describe('save database', function() {
+		it('should save db from non-existent file', function(done) {
+			// load
+			main.db('./example/nope.json', function(err, data) {
+				assert.isNull(err, 'error should null');
+				assert.deepEqual(data, {}, 'data should be empty object');
+
+				data.save(function(err) {
+					assert.isNull(err);
+
+					var result = fs.readFileSync('./example/nope.json', {encoding: 'utf8'});
+					assert.strictEqual(result, '{}', 'should be empty object in file');
+
+					fs.unlinkSync('./example/nope.json');
+
+					done();
+				});
+			});
+		});
+
+		it('should not be able to save db into non-existent folder', function(done) {
+			main.db('./nofolder/nope.json', function(err, data) {
+				// It should instantiate fine.
+				assert.isNull(err, 'error should be null');
+				assert.deepEqual(data, {}, 'data should be empty object');
+
+				data.save(function(err) {
+					assert.isObject(err);
+					assert.strictEqual(err.code, 'ENOENT');
+					// v0.10 and v0.12 give 'open [filename]' as error message, while later versions give
+					// a more verbose message with 'no such file or directory', support both.
+					assert.match(err.message, /open|no such file or directory/, 'should be bad directory error');
+
+					done();
+				});
+			});
+		});
+
 		// without modifications, should give same output
 		it('should have same output without modifications', function(done) {
 			var primary = fs.readFileSync('./example/values.json', {encoding: 'utf8'});
