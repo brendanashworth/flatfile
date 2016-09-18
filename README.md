@@ -1,4 +1,4 @@
-flatfile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?branch=master)](https://travis-ci.org/brendanashworth/flatfile)
+flatfile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?branch=master)](https://travis-ci.org/brendanashworth/flatfile) [![codecov](https://codecov.io/gh/brendanashworth/flatfile/branch/master/graph/badge.svg)](https://codecov.io/gh/brendanashworth/flatfile)
 =====
 
 > flatfile is a very simple library for storing, retrieving, and setting JSON data in a flatfile. The library focuses on ease of use and simplicity. Getting up and running is extremely simple and does not require installing any database software.

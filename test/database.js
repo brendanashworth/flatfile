@@ -1,6 +1,8 @@
 var assert = require('chai').assert;
-var main = require('../main');
 var fs = require('fs');
+
+// We need a special require URL for coverage.
+var main = process.env.JSCOV ? require('../src-cov/flatfile') : require('../main');
 
 describe('flatfile database', function() {
 	describe('open database', function() {
