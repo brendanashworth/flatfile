@@ -38,7 +38,7 @@ flatfile.db('data.json', function(err, data) {
 ```javascript
 flatfile.db(filename, function(err, data))
 ```
-This is a very simple, asynchronous function for initiating the database. After reading the file and parsing to an object, it will return the object via the callback data paramater. If an error occurs while reading the file, it will be passed to the callback and *null* will be returned as data.
+This is a very simple, asynchronous function for initiating the database. After reading the file and parsing to an object, it will return the object via the callback data paramater. If the file does not exist, an empty object will be returned, allowing you to save it to a new file with `.save()`.
 
 **Warning**: the `data` object that is passed from this function is not an exact copy from the file, but can be treated as such. The data object is given an extra value: `save`. `save` is a function that can be called when the database should be saved.
 
@@ -58,7 +58,7 @@ Saving a file to the database is inherently easy. Simply reference and set the v
 ```javascript
 data.save(function(err));
 ```
-Again, this is a very simple function for saving the changes to the database. You can repetitively call this function without having an issue. As a paramater, this function takes a callback function with an error paramater. If an error did not occur, the error will not be defined. Otherwise, you can handle the error to your own delight.
+Again, this is a very simple function for saving the changes to the database. You can repetitively call this function without having an issue. As a paramater, this function takes a callback function with an error paramater.
 
 **Warning**: be aware that the data *will not automatically save*. It is necessary to call this function if you want to save the changes.
 
