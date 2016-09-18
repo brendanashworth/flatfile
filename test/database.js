@@ -33,7 +33,6 @@ describe('flatfile database', function() {
 			main.db('./example/values.json', function(err, data) {
 				assert.isNull(err, 'should not have error');
 
-				assert.isString(data._filename);
 				assert.isFunction(data.save);
 
 				done();

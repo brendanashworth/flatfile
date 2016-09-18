@@ -8,8 +8,9 @@ flatfile [![Build Status](https://travis-ci.org/brendanashworth/flatfile.svg?bra
 $ npm i flatfile --save
 ```
 
+The module supports node v0.10, v0.12, and all major releases afterwards.
+
 ## Usage
-This example uses ES6 (see [io.js](https://iojs.org/en/index.html)), though the module is compatible up to node v0.10.
 ```javascript
 const flatfile = require('flatfile');
 
@@ -39,7 +40,7 @@ flatfile.db(filename, function(err, data))
 ```
 This is a very simple, asynchronous function for initiating the database. After reading the file and parsing to an object, it will return the object via the callback data paramater. If an error occurs while reading the file, it will be passed to the callback and *null* will be returned as data.
 
-**Warning**: the `data` object that is passed from this function is not an exact copy from the file, but can be treated as such. The data object is given two extra values: `_filename` and `save`. The `_filename` value is quite simple and simply stores the filename of the read database file. The `save` variable is a function that should be executed when the database should be saved.
+**Warning**: the `data` object that is passed from this function is not an exact copy from the file, but can be treated as such. The data object is given an extra value: `save`. `save` is a function that can be called when the database should be saved.
 
 ### Getting values
 ```javascript
