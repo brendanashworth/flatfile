@@ -9,24 +9,16 @@ exports.db = function(filename, callback) {
 		// Parse data
 		data = JSON.parse(data);
 
-		// Adds various library-specific data handles
-		data._filename = filename;
-
 		// Adds the save function
 		data.save = function(callback) {
-			var filename = data._filename;
-
 			// Write to the file
 			fs.writeFile(filename, JSON.stringify(data), function(err) {
 				callback(err);
 			});
 		};
 
-		// Make _filename and save non-enumerable so that they dont mess up data.length
+		// Make `save` non-enumerable so that it doesn't mess up data.length
 		Object.defineProperties(data, {
-			'_filename': {
-				enumerable: false
-			},
 			'save': {
 				enumerable: false
 			}
