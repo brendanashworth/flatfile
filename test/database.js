@@ -38,7 +38,9 @@ describe('flatfile database', function() {
 				done();
 			});
 		});
+	});
 
+	describe('save database', function() {
 		// without modifications, should give same output
 		it('should have same output without modifications', function(done) {
 			var primary = fs.readFileSync('./example/values.json', {encoding: 'utf8'});
@@ -53,6 +55,37 @@ describe('flatfile database', function() {
 					var secondary = fs.readFileSync('./example/values.json', {encoding: 'utf8'});
 
 					assert.strictEqual(secondary, primary, 'should be same output as input');
+
+					done();
+				});
+			});
+		});
+
+		// with modifications, should give updated output
+		it('should update output with modifications', function(done) {
+			var primary = fs.readFileSync('./example/values.json', {encoding: 'utf8'});
+
+			// load
+			main.db('./example/values.json', function(err, data) {
+				assert.isNull(err, 'should not have error');
+
+				data.testvalue = 'new';
+				data.object['key'] = 'value';
+
+				var modified = JSON.stringify(data);
+
+				// save
+				data.save(function(err) {
+					if (err) return done(err);
+
+					// read it up and assert
+					var secondary = fs.readFileSync('./example/values.json', {encoding: 'utf8'});
+
+					assert.strictEqual(secondary, modified, 'should be same output as input');
+					assert.notStrictEqual(secondary, primary, 'should not be same output as beginning');
+
+					// reset for later tests
+					fs.writeFileSync('./example/values.json', primary, {encoding: 'utf8'});
 
 					done();
 				});
