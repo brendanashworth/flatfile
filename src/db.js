@@ -17,7 +17,7 @@ exports.db = function(filename, callback) {
 			var filename = data._filename;
 
 			// Write to the file
-			fs.writeFile(data._filename, JSON.stringify(data), function(err) {
+			fs.writeFile(filename, JSON.stringify(data), function(err) {
 				callback(err);
 			});
 		};

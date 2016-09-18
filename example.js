@@ -1,3 +1,4 @@
+/*eslint no-console: "off"*/
 var flatfile = require('./main');
 
 // Example using asynchronous library.
