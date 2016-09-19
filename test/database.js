@@ -16,6 +16,19 @@ describe('flatfile database', function() {
 			});
 		});
 
+		it('should error on open folder', function(done) {
+			main.db('./example/', function(err, data) {
+				assert.isObject(err, 'error should be an error');
+				assert.strictEqual(err.code, 'EISDIR');
+				// Older versions of node carry worse error messages; support both.
+				assert.match(err.message, /EISDIR, read|illegal operation on a directory/, 'should be read directory error');
+
+				assert.isNull(data, 'data should null');
+
+				done();
+			});
+		});
+
 		// should not give error on successful load
 		it('should not give error on database load', function(done) {
 			// load
