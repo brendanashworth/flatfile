@@ -1,6 +1,6 @@
 {
   "name": "flatfile",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Basic JSON-style local flatfile storage. Focus on simplicity and ease of use.",
   "main": "main.js",
   "scripts": {
